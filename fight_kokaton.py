@@ -144,10 +144,7 @@ class Beam:
         self.rct.move_ip(self.vx, self.vy)
         screen.blit(self.img, self.rct)
 
-
 class Explosion:
-    
-    
     def __init__(self, beam: Beam):
         exp=pg.image.load(f"{MAIN_DIR}/fig/explosion.gif")
         self.exp_lst=[exp,pg.transform.flip(exp, True, False),pg.transform.flip(exp, True, True),pg.transform.flip(exp, False,True)]
@@ -157,7 +154,6 @@ class Explosion:
         self.rct.centery = beam.rct.centery
         self.rct.centerx = beam.rct.centerx+beam.rct.width/2      
           
-
     def update(self, screen: pg.Surface):
         self.life-=1
         screen.blit(self.exp_lst[self.life%4], self.rct)
@@ -172,7 +168,6 @@ def main():
     bombs = [Bomb() for _ in range(NUM_OF_BOMBS)]  
     beam = None
     exps_lst=[]
-
     clock = pg.time.Clock()
     tmr = 0
     while True:
@@ -198,9 +193,8 @@ def main():
                 beam = None
                 bombs[i] = None
                 bird.change_img(6, screen)
-        # Noneでない爆弾だけのリストを作る
-        bombs = [bomb for bomb in bombs if bomb is not None]
-        
+
+        bombs = [bomb for bomb in bombs if bomb is not None]        
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
         for bomb in bombs:
@@ -210,7 +204,6 @@ def main():
         pg.display.update()
         tmr += 1
         clock.tick(50)
-
 
 if __name__ == "__main__":
     pg.init()
