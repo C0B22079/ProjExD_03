@@ -2,7 +2,6 @@ import os
 import random
 import sys
 import time
-
 import pygame as pg
 
 
@@ -161,7 +160,7 @@ class Explosion:
 
     def update(self, screen: pg.Surface):
         self.life-=1
-        screen.blit(self.img, self.rct)
+        screen.blit(self.exp_lst[self.life%4], self.rct)
 
 
 def main():
@@ -182,7 +181,6 @@ def main():
                 return
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:  # スペースキーが押されたら
                 beam = Beam(bird)  # ビームインスタンスの生成
-        
         screen.blit(bg_img, [0, 0])
         
         for bomb in bombs:
